@@ -1,0 +1,52 @@
+## Auto generated providers.tf ##
+## Updated on: {{ timestamp }} ##
+
+provider "aws" {
+  region = "{{ provider_region }}"
+  assume_role {
+    role_arn    = "{{ target_admin_role_arn }}"
+  }
+  default_tags {
+    tags = {
+      managed_by                  = "AFT"
+    }
+  }
+}
+
+provider "aws" {
+  alias = "sa"
+  region = "sa-east-1"
+  assume_role {
+    role_arn    = "{{ target_admin_role_arn }}"
+  }
+  default_tags {
+    tags = {
+      managed_by                  = "AFT"
+    }
+  }
+}
+
+
+provider "aws" {
+  alias = "network"
+  region = "{{ provider_region }}"
+  assume_role {
+    role_arn = "arn:aws:iam::{NETWORK_ACCOUNT_ID}:role/AFTNetworkRole"
+  }
+}
+
+provider "aws" {
+  alias = "network-sa"
+  region = "sa-east-1"
+  assume_role {
+    role_arn = "arn:aws:iam::{NETWORK_ACCOUNT_ID}:role/AFTNetworkRole"
+  }
+}
+
+provider "aws" {
+  alias = "log"
+  region = "us-east-1"
+  assume_role {
+    role_arn = "arn:aws:iam::{LOG_ACCOUNT_ID}:role/AFTNetworkRole"
+  }
+}
